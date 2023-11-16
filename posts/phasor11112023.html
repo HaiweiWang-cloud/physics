@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Phasors</title>
+        <link rel="stylesheet" href="styles.css"/>
+        <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+    </head>
+
+    <body>
+
+        <nav>
+            <a href="https://haiweiwang-cloud.github.io/physics/">Return to home</a>
+        </nav>
+
+        <header>
+            <h1>Phasors, Analytic Representations and Hilbert Transforms</h1>
+        </header>
+        
+        <div class="fixed">
+            <aside id="toc" class="sidebar">
+                <h2>
+                    Contents
+                </h2>
+                <ol>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#definition">Phasors</a></li>
+                    <li><a href="#analytic">Analytic signals</a></li>
+                    <li><a href="#hilbert transform">Hilbert transforms</a></li>
+                </ol>
+            </aside>
+
+            <aside id="references" class="sidebar">
+                <h1>References</h1>
+
+                <p id="ref 1"><a href="https://doi.org/10.1049/ji-3-2.1946.0074" target="_blank">[1] D. Gabor,<em>J. Inst. Electr. Engrs.</em>, <strong>93</strong>, (1946).</a></p>
+
+                <p id="ref 2"><a href="https://doi.org/10.1017/CBO9781139644181.019">[2] M. Born et al., <em>Principles of Optics Electromagnetic Theroy of Propagation, Interference and Diffraction of Light</em>, pp. 554-632, (Cambridge University Press, 1999).</a></p>
+            </aside>
+
+        </div>
+
+        <div id="article">
+
+            <section id="introduction">
+                <h1>Introduction</h1>
+                <p>
+                    The idea of a phasor is simple: replace sinusoids with the complex exponential, perform our calculations, and convert back to sinusoids through Euler's formula. This process greatly simplifies the calculation step, replacing tedious trigonometric identities with simple algebra. While this tool applies well to adding waveforms of a single frequency, such as in electrical power distribution systems, where the standard is 60Hz, it can be generalised to polychromatic signals and serves as the foundation for signal processing and wave propagation. This formalism includes the analytic representation and the Hilbert transform.
+                </p>
+    
+                <p>
+                    Enter <a href="https://en.wikipedia.org/wiki/Dennis_Gabor">Dennis Gabor</a>, who is most known for the invention of holography. For this work, he was awarded the 1971 Nobel Prize in physics. Unfortunately, this single fact has overshadowed his other important contributions to physics, one of which is his study of communication and human hearing. In his seminal paper "Theory of Communications" published in 1944 <a href="#ref 1">[1]</a>, he introduced for the first time the idea of the analytic signal. This analytic signal is an extension of the physical signal - which is a real-valued quantity - to a complex-valued quantity. This was motivated by the developments in the formalisms of quantum mechanics at the time, in which the basic entity is a complex-valued wavefunction, and from which <em>Heisenberg's uncertainty principle</em> was derived. In his attempt to apply this formalism to communication and derive an analogous uncertainty relation for the transmission of information, the analytic signal was introduced. An interesting consequence of this is that the imaginary part of the analytic signal is a partner of the real part of the signal, having the same information content as the real signal, the transform which connects these two is then the <em>Hilbert transform</em>.
+                </p>
+                
+            </section>
+    
+            <section id="definition">
+                <h1>What are phasors?</h1>
+    
+                <p>
+                    Consider a sinusoidally varying voltage as an example
+    
+                    \[v(t) = V_0 \cos (\delta-\omega t),\]
+    
+                    with \(V_0\) the amplitude of the voltage and \(\delta\) the phase.
+                </p>
+    
+                <p>
+                    Using Euler's formula, we can also write 
+    
+                    \[v(t) = \text{Re}\left\{ V_0 e^{j\delta} e^{-j\omega t}\right\}. \]
+    
+                    Taking the real part is linear, and this motivates the use of the complex amplitude, defined as
+    
+                    \[V = V_0 e^{j\delta}.\]
+    
+                    This can also be called the phasor, with the angular frequency being implicity. Phasors can be added to each other and still represent the real physical voltage because taking the real part is a linear operation. Hence in analysis of linear circuits with one frequency, we can work completely with phasors, greatly simplifying the algebra. This not only applies to circuits, it applies more generally to harmonically varying quantities. Applications include optics, acoustics and mechanical vibrations.
+                </p>
+    
+                <p>
+                    One mathematical feature that we note immediately in this formalism with one frequency gives us the intuition for the proceeding discussion with polychromatic signals. Note that we can write
+    
+                    \[\cos \omega t = \frac{1}{2}\left( e^{j \omega t} + e^{-j \omega t}\right), \sin \omega t = \frac{1}{2j}\left( e^{j \omega t} - e^{-j \omega t}\right).\]
+    
+                    We can view this as the sum of a component of positive frequency and a component of negative frequency of equal magnitude. We also see that if we remove the negative frequency component and double the remaining positive frequency component, we obtain the phasor associated with the physical quantity. Another thing to note is that the use of cosine over sine for the real signal is not special as they result only in a phase shift.
+                </p>
+            </section>
+    
+            <section id="analytic">
+                <h1>Analytic signals</h1>
+    
+                <p>
+                    A <em>signal</em> is distinct fundamentally from monochromatic sinusoidal waves in that it is designed to carry information in the time-varying modulations of a physical quantity such as voltage, current, brightness or pressure. An infinite wave described previously can only carry one <em>datum</em> in the amplitude. By the Fourier theorem, any well-behaved signal can be decomposed into a sum of cosine and sine plane waves. Gabor noted that there are physical bounds on the number of data that can be transmitted. Notably, the measurement occurs over a finite time interval \(\tau\) and with a finite frequency bandwidth \((f_2-f_1)\). Thus the maximum number of Fourier amplitude components that can be physically measured or the number of data that can be transmitted is \(N=2(f_2-f_1)\tau\). Gabor wanted a more satisfying formalism to describe this limitation to expand the framework to describe communication, and this motivated the introduction of the complex analytic signal to parallel the mathematical formalism from quantum mechanics. In the present discussion, we limit ourselves to this, and we leave the treatment of the communication theory to later notes.
+                </p>
+    
+                <p>
+                    A signal \(s(t)\) can be written in a polychromatic decomposition
+    
+                    \[s(t) = \int_{0}^{\infty} a(\nu)\cos[\phi(\nu)-2\pi\nu t]d\nu.\]
+    
+                    The analytic signal is formed by adding an imaginary part
+    
+                    \[S(t) = s(t) + j\sigma(t),\]
+    
+                    with
+    
+                    \[\sigma(t) = \int_{0}^{\infty} a(\nu)\sin[\phi(\nu)-2\pi\nu t]d\nu.\]
+    
+                    \(\sigma(t)\) is the imaginary part associated with our signal. Here we note a difficulty in practically calculating \(\sigma(t)\) as it requires us to find the Fourier expansion coefficients through integration and integrating again. The Hilbert transform provides a direct way of obtaining this through a single transform, allowing it to be efficently computed numerically.
+                </p>
+    
+                <p>
+                    We can also express the real signal with a full range Fourier transform 
+    
+                    \[s(t) = \int_{-\infty}^{\infty} A(\nu) e^{-j2\pi \nu t} d\nu,\]
+    
+                    with
+    
+                    \[A(-\nu)=A^{*}(\nu).\]
+    
+                    Upon comparison
+    
+                    \[A(\nu) = \frac{1}{2} a(\nu) e^{j \phi(\nu)}.\]
+    
+                    The analytic signal can be written as
+    
+                    \[S(t) = 2\int_{0}^{\infty} A(\nu) e^{-j2\pi \nu t} d\nu.\]
+    
+                    Due to this, the analytic signal is also called the <em>complex half-range function</em>.
+                </p>
+            </section>
+    
+            <section id="hilbert transform">
+                <h1>Hilbert transforms</h1>
+    
+                <p>
+                    The forward Hilbert transform is given by
+    
+                    \[\sigma(t) = \frac{1}{\pi} \text{p.v.}\int_{-\infty}^{\infty} \frac{s(\tau)}{t-\tau} d\tau,\]
+    
+                    where \(p.v.\) is the <em>principal value</em> for a singularity at \(t\)
+    
+                    \[\text{p.v.}\int_{-\infty}^{\infty} = \lim_{\epsilon^{+} \to 0} \left(\int_{-\infty}^{t-\epsilon} + \int_{t+\epsilon}^{\infty}\right). \]
+    
+                    The backward transform is
+    
+                    \[s(t) = -\frac{1}{\pi} \text{p.v.}\int_{-\infty}^{\infty} \frac{\sigma(\tau)}{t-\tau} d\tau.\]
+    
+                    The origin of this transform can be understood by considering a single frequency, where the cosine is converted to the sine by multiplying the positive frequency components by \(-j\) and the negative frequency components by \(j\). Hence by the convolution theorem, the Hilbert transform is the convolution of the signal with the Fourier transform of the function \(-j \, \text{sgn}(\nu)\). The Hilbert transform phase shifts by \(90^o\) each time, hence applying the Hilbert transform twice negates the frequency components, and hence the inverse Hilbert transform is the negative of the Hilbert transform.
+    
+                </p>
+            </section>
+        
+        </div>
+        
+    </body>
+</html>
+

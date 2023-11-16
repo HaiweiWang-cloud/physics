@@ -1,0 +1,68 @@
+body {
+    background-color: papayawhip;
+    font-family: 'Times New Roman', Times, serif;
+    word-spacing: 0.2rem;
+    letter-spacing: 0.01rem;
+    margin: 0;
+    padding: 0; 
+}
+
+header {
+    background-color: rgb(250, 225, 181);
+    text-align: center;
+    padding: 5px;
+    border: 0px;
+    border-bottom: 2px;
+    border-bottom-color:chocolate;
+    border-style: solid;
+}
+
+nav {
+    background-color: bisque;
+    text-align: center;
+}
+
+nav a {
+    display: block;
+    background-color: rgb(252, 228, 199);
+    padding: 3px;
+    color: black;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: rgb(255, 221, 180);
+    color: rgba(42, 42, 42, 0.512);
+}
+
+
+.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.sidebar {
+    margin-top: 10px;
+    margin-left: 30px;
+    background-color: rgb(255, 248, 236);
+    padding: 10px;
+    border: 2px solid black;
+    width: 230px;
+}
+
+.sidebar:nth-of-type(1) {
+    margin-top: 200px;
+}
+
+#references p:target {
+    border: 2px solid black;
+}
+
+#article {
+    margin-top: 20px;
+    margin-left: 320px;
+    background-color: rgb(255, 248, 236);
+    padding: 20px;
+    margin-right: 20px;
+}
