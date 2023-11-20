@@ -30,6 +30,7 @@
                     <li><a href="#definition">Phasors</a></li>
                     <li><a href="#analytic">Analytic signals</a></li>
                     <li><a href="#hilbert transform">Hilbert transforms</a></li>
+                    <li><a href="#interpretation">Interpretation of the analytic signal</a></li>
                 </ol>
             </aside>
 
@@ -152,6 +153,38 @@
                     The origin of this transform can be understood by considering a single frequency, where the cosine is converted to the sine by multiplying the positive frequency components by \(-j\) and the negative frequency components by \(j\). Hence by the convolution theorem, the Hilbert transform is the convolution of the signal with the Fourier transform of the function \(-j \, \text{sgn}(\nu)\). The Hilbert transform phase shifts by \(90^o\) each time, hence applying the Hilbert transform twice negates the frequency components, and hence the inverse Hilbert transform is the negative of the Hilbert transform.
     
                 </p>
+            </section>
+
+            <section id="interpretation">
+                <h1>Interpretation of the analytic signal</h1>
+
+                <p>
+                    In most cases, the spectrum is non-negligible only around some average frequency \(\bar{\nu}\). We write the analytic signal in the form 
+
+                    \[ S(t) = A(t)\exp[j\Phi(t)-j2\pi \bar{\nu}t].\]
+
+                    Then
+
+                    \[A(t) e^{j\Phi(t)} = 2\int_{0}^{\infty} v(\nu)e^{-j2\pi (\nu-\bar{\nu})t} d\nu \\
+                    = \int_{-\bar{\nu}}^{\infty} g(\mu)e^{-j2\pi \mu t} d\mu,\]
+
+                    with \(\mu = \nu - \bar{\nu}\) and \(g(\mu) = 2 v(\mu +\bar{\nu})\). \(g(\mu)\) is peaked around zero, for a large average frequency, the scale of time variation of \(A(t) e^{j\Phi(t)}\) is much smaller than that of the oscillation at the average frequency, \(\Delta \nu / \bar{\nu} << 1\). We have a carrier signal which is modulated by amplitude and phase, and this is used in telecommunications as amplitude and phase modulations to carry information in different frequency bands, allowing many channels simultaneously, called multiplexing.
+                </p>
+
+                <p>
+                    In terms of the physical signals, we have
+
+                    \[s(t) = A(t) \cos[\Phi(t) - 2\pi \bar{\nu}t],\]
+                    \[\sigma (t) = A(t) \sin[\Phi(t) - 2\pi \bar{\nu}t].\]
+
+                    With
+
+                    \[A(t) = |S(t)|,\]
+                    \[\Phi(t) = 2\pi \bar{\nu}t + \tan^{-1}\left(j\frac{S^*-S}{S^*+S}\right).\]
+
+                    The amplitude of the analytic signal is the envelope of the physical signal, and the phase of the analytic signal has a similar interpretation. Thus the analytic signal contains the same information as that of physical signals.
+                </p>
+
             </section>
         
         </div>
